@@ -3,15 +3,7 @@ import React from "react";
 import "./header.css";
 
 function Header() {
-  return (
-    <div className="h-wrapper">
-      {/* <img
-        src={CDSImg}
-        alt="CDS Building Architectural Rendering"
-        className="h-img"
-      ></img> */}
-    </div>
-  );
+  return <section className="h-wrapper"></section>;
 }
 
 export default Header;
