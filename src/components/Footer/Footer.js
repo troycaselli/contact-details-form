@@ -3,7 +3,7 @@ import "./footer.css";
 
 function Footer() {
   return (
-    <div className="f-wrapper">
+    <section className="f-wrapper">
       <p className="f-text">
         For assistance please call{" "}
         <a href="tel:555-5555" className="f-phone">
@@ -15,7 +15,7 @@ function Footer() {
         </a>
         .
       </p>
-    </div>
+    </section>
   );
 }
 
