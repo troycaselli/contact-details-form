@@ -1,0 +1,12 @@
+.h-wrapper {
+  background-image: url(../../assets/CDS.png);
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 20vh;
+}
+.h-img {
+  min-width: 100%;
+  height: 10vh;
+  display: block;
+}
