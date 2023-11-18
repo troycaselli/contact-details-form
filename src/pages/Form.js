@@ -13,8 +13,9 @@ const initialFormData = {
 };
 
 function Form() {
-  // initialize slice of state for form data
+  // initialize slice of state for form data and success message
   const [formData, setFormData] = useState(initialFormData);
+  const [disabled, setDisabled] = useState(false);
 
   // update form data state
   const handleChange = (evt) => {
@@ -33,6 +34,15 @@ function Form() {
   return (
     <section className="form-wrapper">
       <div className="form-container">
+        <div className="form-success-container">
+          {!disabled && (
+            <div className="form-success-card">
+              <p className="form-success-text">
+                You have filled in all the fields correctly.
+              </p>
+            </div>
+          )}
+        </div>
         <h1>Contact Details</h1>
         <label htmlFor="fName">First Name:</label>
         <input
@@ -89,7 +99,7 @@ function Form() {
         </select>
         {formData.dropdown === "other" && (
           <div>
-            <label htmlFor="specifyOther">Please Specify:</label>
+            <label htmlFor="specifyOther">Please specify:</label>
             <input
               type="text"
               id="specifyOther"
