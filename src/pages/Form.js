@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import schema from "../validation/formSchema";
 import "./form.css";
 
 const initialFormData = {
@@ -12,10 +14,22 @@ const initialFormData = {
   agree: false,
 };
 
+const initialErrorValues = {
+  fName: "",
+  lName: "",
+  phone: "",
+  email: "",
+  promo: "",
+  dropdown: "",
+  specifyOther: "",
+  agree: "",
+};
+
 function Form() {
   // initialize slice of state for form data and success message
   const [formData, setFormData] = useState(initialFormData);
-  const [disabled, setDisabled] = useState(false);
+  const [errorValues, setErrorValues] = useState(initialErrorValues);
+  const [disabled, setDisabled] = useState(true);
 
   // update form data state
   const handleChange = (evt) => {
@@ -31,6 +45,10 @@ function Form() {
     }
   }, [formData.dropdown]);
 
+  useEffect(() => {
+    schema.isValid(formData).then((valid) => setDisabled(!valid));
+  }, [formData]);
+
   return (
     <section className="form-wrapper">
       <div className="form-container">
@@ -44,7 +62,9 @@ function Form() {
           )}
         </div>
         <h1>Contact Details</h1>
-        <label htmlFor="fName">First Name:</label>
+        <label htmlFor="fName">
+          First Name:<span className="required-field">*</span>
+        </label>
         <input
           type="text"
           id="fName"
@@ -52,7 +72,9 @@ function Form() {
           value={formData.fName}
           onChange={handleChange}
         />
-        <label htmlFor="lName">Last Name:</label>
+        <label htmlFor="lName">
+          Last Name:<span className="required-field">*</span>
+        </label>
         <input
           type="text"
           id="lName"
@@ -60,7 +82,9 @@ function Form() {
           value={formData.lName}
           onChange={handleChange}
         />
-        <label htmlFor="phone">Phone Number:</label>
+        <label htmlFor="phone">
+          Phone Number:<span className="required-field">*</span>
+        </label>
         <input
           type="text"
           id="phone"
@@ -68,7 +92,9 @@ function Form() {
           value={formData.phone}
           onChange={handleChange}
         />
-        <label htmlFor="email">Email Address:</label>
+        <label htmlFor="email">
+          Email Address:<span className="required-field">*</span>
+        </label>
         <input
           type="email"
           id="email"
@@ -76,6 +102,7 @@ function Form() {
           value={formData.email}
           onChange={handleChange}
         />
+        <p>This field is required in order to receive an email confirmation</p>
         <label htmlFor="promo">Promo Code:</label>
         <input
           type="text"
@@ -99,7 +126,9 @@ function Form() {
         </select>
         {formData.dropdown === "other" && (
           <div>
-            <label htmlFor="specifyOther">Please specify:</label>
+            <label htmlFor="specifyOther">
+              Please Specify:<span className="required-field">*</span>
+            </label>
             <input
               type="text"
               id="specifyOther"
@@ -117,6 +146,7 @@ function Form() {
             onChange={handleChange}
           />
           I agree to the terms and conditions of this event.
+          <span className="required-field">*</span>
         </label>
       </div>
     </section>
