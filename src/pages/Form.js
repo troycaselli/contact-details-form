@@ -71,6 +71,7 @@ function Form() {
           name="fName"
           value={formData.fName}
           onChange={handleChange}
+          autoComplete="on"
         />
         <label htmlFor="lName">
           Last Name:<span className="required-field">*</span>
@@ -81,6 +82,7 @@ function Form() {
           name="lName"
           value={formData.lName}
           onChange={handleChange}
+          autoComplete="on"
         />
         <label htmlFor="phone">
           Phone Number:<span className="required-field">*</span>
@@ -91,6 +93,7 @@ function Form() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
+          autoComplete="on"
         />
         <label htmlFor="email">
           Email Address:<span className="required-field">*</span>
@@ -101,6 +104,7 @@ function Form() {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          autoComplete="on"
         />
         <p>This field is required in order to receive an email confirmation</p>
         <label htmlFor="promo">Promo Code:</label>
@@ -141,6 +145,7 @@ function Form() {
         <label htmlFor="agree">
           <input
             type="checkbox"
+            id="agree"
             name="agree"
             checked={formData.agree}
             onChange={handleChange}
