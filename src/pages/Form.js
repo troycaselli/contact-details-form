@@ -27,10 +27,11 @@ const initialErrorValues = {
 };
 
 function Form() {
-  // initialize slice of state for form data and success message
+  // initialize state
   const [formData, setFormData] = useState(initialFormData);
   const [errorValues, setErrorValues] = useState(initialErrorValues);
   const [disabled, setDisabled] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   // update error values by checking form values with schema
   const validate = (name, valueToUse) => {
@@ -61,12 +62,18 @@ function Form() {
     }
   }, [formData.dropdown]);
 
+  // check form data with yup schema
   useEffect(() => {
     schema.isValid(formData).then((valid) => {
       console.log(valid);
       setDisabled(!valid);
     });
   }, [formData]);
+
+  // toggle terms and conditions popup
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
 
   return (
     <section className="form-wrapper">
@@ -189,7 +196,8 @@ function Form() {
             <p className="form-error">{errorValues.specifyOther}</p>
           </div>
         )}
-        <label htmlFor="agree" className="form-label">
+        <div className="checkbox-input-container">
+          <label htmlFor="agree" className="form-label"></label>
           <input
             type="checkbox"
             id="agree"
@@ -198,11 +206,34 @@ function Form() {
             checked={formData.agree}
             onChange={handleChange}
           />
-          I agree to the terms and conditions of this event.
-          <span className="required-field">*</span>
-        </label>
+          <p>
+            I agree to the{" "}
+            <span className="form-terms-link" onClick={togglePopup}>
+              terms and conditions
+            </span>{" "}
+            of this event.
+            <span className="required-field">*</span>
+          </p>
+        </div>
         <p className="form-error">{errorValues.agree}</p>
       </div>
+
+      {showPopup && (
+        <div className="form-popup-card">
+          <p className="popup-close" onClick={togglePopup}>
+            &times;
+          </p>
+          <p className="popup-text">
+            ○ All cancellation requests must be received by March 1, 2022.
+          </p>
+          <p className="popup-text">
+            ○ All cancellation requests are subject to a $100 cancellation fee.
+          </p>
+          <p className="popup-text">
+            ○ No one under the age of 16 will be allowed on the show floor.
+          </p>
+        </div>
+      )}
     </section>
   );
 }
