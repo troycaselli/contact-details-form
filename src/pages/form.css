@@ -1,26 +1,97 @@
 .form-wrapper {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-  min-height: 75vh;
+  min-height: 73vh;
   width: 100%;
-  border: 1px solid orange;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0;
+  width: 60%;
 }
 .form-success-container {
   display: flex;
   justify-content: center;
-}
-.form-container {
-  margin: 50px 0;
-  width: 60%;
-  border: 1px solid red;
 }
 .form-success-card {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  max-width: 300px;
-  padding: 15px 5px;
-  background-color: green;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 15px 10px;
+  border-radius: 3px;
+  background-color: rgb(117, 238, 117);
+}
+.form-title {
+  font-size: 2.5rem;
+  padding-top: 50px;
+}
+.form-required-notice {
+  font-style: italic;
+  font-size: 0.8rem;
+  padding-top: 5px;
+}
+.form-label {
+  margin: 20px 0 5px 0;
+}
+.required-field {
+  font-size: 0.8rem;
+  color: rgb(217, 18, 18);
+  font-weight: bold;
+}
+#fName,
+#lName,
+#phone,
+#dropdown,
+#specifyOther {
+  width: 175px;
+}
+#fName,
+#lName {
+  font-size: 14px;
+  font-weight: bold;
+}
+#phone,
+#email,
+#promo,
+#dropdown,
+#specifyOther {
+  font-size: 12px;
+}
+#email {
+  font-style: italic;
+  width: 225px;
+}
+#promo {
+  width: 125px;
+}
+#dropdown,
+#agree {
+  cursor: pointer;
+}
+#agree {
+  accent-color: rgb(112, 160, 229);
+}
+.form-input {
+  border: 1px solid transparent;
+  padding: 7px 0 7px 15px;
+  border-radius: 3px;
+}
+.form-input:focus {
+  outline: none;
+  border: 1px solid rgb(112, 160, 229);
+}
+.form-error {
+  font-size: 0.8rem;
+  font-style: italic;
+  padding-top: 5px;
+  color: rgb(217, 18, 18);
+}
+.optional-input-container {
+  display: flex;
+  flex-direction: column;
 }

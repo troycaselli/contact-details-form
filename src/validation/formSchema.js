@@ -14,7 +14,7 @@ const formSchema = yup.object().shape({
   phone: yup
     .string()
     .trim()
-    .matches(/^[0-9]+$/, "*Phone number only accepts numbers 0-9")
+    .matches(/^[0-9]*$/, "*Phone number only accepts numbers 0-9")
     .max(30, "*Phone number must be no more than 30 characters")
     .required("*Phone number required"),
   email: yup
@@ -41,7 +41,7 @@ const formSchema = yup.object().shape({
     otherwise: () => yup.string(),
   }),
   specifyOther: yup.string().when("dropdown", {
-    is: "other",
+    is: (val) => val === "other",
     then: () =>
       yup
         .string()
