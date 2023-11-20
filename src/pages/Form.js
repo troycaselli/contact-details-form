@@ -55,69 +55,87 @@ function Form() {
         <div className="form-success-container">
           {!disabled && (
             <div className="form-success-card">
-              <p className="form-success-text">
-                You have filled in all the fields correctly.
-              </p>
+              <p>You have filled in all the fields correctly.</p>
             </div>
           )}
         </div>
-        <h1>Contact Details</h1>
-        <label htmlFor="fName">
-          First Name:<span className="required-field">*</span>
+        <h1 className="form-title">Contact Details</h1>
+        <p className="form-required-notice">
+          All fields with an asterisk (*) are required
+        </p>
+        <label htmlFor="fName" className="form-label">
+          First Name<span className="required-field">*</span>
         </label>
         <input
           type="text"
           id="fName"
+          className="form-input"
           name="fName"
           value={formData.fName}
           onChange={handleChange}
+          placeholder="e.g. John"
           autoComplete="on"
         />
-        <label htmlFor="lName">
-          Last Name:<span className="required-field">*</span>
+        <label htmlFor="lName" className="form-label">
+          Last Name<span className="required-field">*</span>
         </label>
         <input
           type="text"
           id="lName"
+          className="form-input"
           name="lName"
           value={formData.lName}
           onChange={handleChange}
+          placeholder="e.g. Doe"
           autoComplete="on"
         />
-        <label htmlFor="phone">
-          Phone Number:<span className="required-field">*</span>
+        <label htmlFor="phone" className="form-label">
+          Phone Number<span className="required-field">*</span>
         </label>
         <input
           type="text"
           id="phone"
+          className="form-input"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
+          placeholder="e.g. 3456789"
           autoComplete="on"
         />
-        <label htmlFor="email">
-          Email Address:<span className="required-field">*</span>
+        <label htmlFor="email" className="form-label">
+          Email Address<span className="required-field">*</span>
         </label>
         <input
           type="email"
           id="email"
+          className="form-input"
           name="email"
           value={formData.email}
           onChange={handleChange}
+          placeholder="e.g. john.doe@domain.com"
           autoComplete="on"
         />
-        <p>This field is required in order to receive an email confirmation</p>
-        <label htmlFor="promo">Promo Code:</label>
+        <p className="form-required-notice">
+          (Required in order to receive email confirmation)
+        </p>
+        <label htmlFor="promo" className="form-label">
+          Promo Code
+        </label>
         <input
           type="text"
           id="promo"
+          className="form-input"
           name="promo"
           value={formData.promo}
           onChange={handleChange}
         />
-        <label htmlFor="dropdown">How did you hear about us?</label>
+        <label htmlFor="dropdown" className="form-label">
+          How did you hear about us?
+          {formData.promo === "" && <span className="required-field">*</span>}
+        </label>
         <select
           id="dropdown"
+          className="form-input"
           name="dropdown"
           value={formData.dropdown}
           onChange={handleChange}
@@ -129,23 +147,25 @@ function Form() {
           <option value="other">Other</option>
         </select>
         {formData.dropdown === "other" && (
-          <div>
-            <label htmlFor="specifyOther">
-              Please Specify:<span className="required-field">*</span>
+          <div className="optional-input-container">
+            <label htmlFor="specifyOther" className="form-label">
+              Please Specify<span className="required-field">*</span>
             </label>
             <input
               type="text"
               id="specifyOther"
+              className="form-input"
               name="specifyOther"
               value={formData.specifyOther}
               onChange={handleChange}
             />
           </div>
         )}
-        <label htmlFor="agree">
+        <label htmlFor="agree" className="form-label">
           <input
             type="checkbox"
             id="agree"
+            className="form-input"
             name="agree"
             checked={formData.agree}
             onChange={handleChange}

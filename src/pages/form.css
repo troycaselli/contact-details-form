@@ -1,26 +1,78 @@
 .form-wrapper {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-  min-height: 75vh;
+  min-height: 73vh;
   width: 100%;
-  border: 1px solid orange;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0;
+  width: 60%;
 }
 .form-success-container {
   display: flex;
   justify-content: center;
-}
-.form-container {
-  margin: 50px 0;
-  width: 60%;
-  border: 1px solid red;
 }
 .form-success-card {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  max-width: 300px;
-  padding: 15px 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 15px 10px;
+  border-radius: 3px;
   background-color: green;
+}
+.form-title {
+  font-size: 2.5rem;
+  padding-top: 50px;
+}
+.form-required-notice {
+  font-style: italic;
+  font-size: 0.8rem;
+  padding-top: 5px;
+}
+.form-label {
+  margin: 20px 0 5px 0;
+}
+.required-field {
+  font-size: 0.8rem;
+  color: red;
+  font-weight: bold;
+}
+#fName,
+#lName,
+#phone,
+#dropdown,
+#specifyOther {
+  width: 150px;
+}
+#fName,
+#lName {
+  font-size: 14px;
+  font-weight: bold;
+}
+#phone,
+#email,
+#promo,
+#dropdown,
+#specifyOther {
+  font-size: 12px;
+}
+#email {
+  font-style: italic;
+  width: 225px;
+}
+#promo {
+  width: 100px;
+}
+.form-input {
+}
+.optional-input-container {
+  display: flex;
+  flex-direction: column;
 }

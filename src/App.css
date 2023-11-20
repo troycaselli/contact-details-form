@@ -1,9 +1,9 @@
 .app {
   display: flex;
   justify-content: center;
-  background-color: aliceblue;
+  background-color: rgb(240, 240, 240);
   /* background: linear-gradient(to bottom, rgb(250, 252, 254), #d4e5fb); */
-  height: 100vh;
+  min-height: 100vh;
 }
 .app-wrapper {
   display: flex;
