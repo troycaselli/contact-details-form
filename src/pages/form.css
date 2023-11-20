@@ -19,13 +19,12 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
   font-weight: bold;
   font-size: 1.2rem;
   width: 100%;
   padding: 15px 10px;
   border-radius: 3px;
-  background-color: green;
+  background-color: rgb(117, 238, 117);
 }
 .form-title {
   font-size: 2.5rem;
@@ -41,7 +40,7 @@
 }
 .required-field {
   font-size: 0.8rem;
-  color: red;
+  color: rgb(217, 18, 18);
   font-weight: bold;
 }
 #fName,
@@ -49,7 +48,7 @@
 #phone,
 #dropdown,
 #specifyOther {
-  width: 150px;
+  width: 175px;
 }
 #fName,
 #lName {
@@ -68,9 +67,29 @@
   width: 225px;
 }
 #promo {
-  width: 100px;
+  width: 125px;
+}
+#dropdown,
+#agree {
+  cursor: pointer;
+}
+#agree {
+  accent-color: rgb(112, 160, 229);
 }
 .form-input {
+  border: 1px solid transparent;
+  padding: 7px 0 7px 15px;
+  border-radius: 3px;
+}
+.form-input:focus {
+  outline: none;
+  border: 1px solid rgb(112, 160, 229);
+}
+.form-error {
+  font-size: 0.8rem;
+  font-style: italic;
+  padding-top: 5px;
+  color: rgb(217, 18, 18);
 }
 .optional-input-container {
   display: flex;

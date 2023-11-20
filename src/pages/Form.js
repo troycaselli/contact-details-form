@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as yup from "yup";
 
 import schema from "../validation/formSchema";
 import "./form.css";
@@ -31,11 +32,26 @@ function Form() {
   const [errorValues, setErrorValues] = useState(initialErrorValues);
   const [disabled, setDisabled] = useState(true);
 
+  // update error values by checking form values with schema
+  const validate = (name, valueToUse) => {
+    yup
+      .reach(schema, name)
+      .validate(valueToUse)
+      .then(() => {
+        setErrorValues({ ...errorValues, [name]: "" });
+      })
+      .catch((err) =>
+        setErrorValues({ ...errorValues, [name]: err.errors[0] })
+      );
+  };
+
   // update form data state
   const handleChange = (evt) => {
     const { type, name, value, checked } = evt.target;
     const valueToUse = type === "checkbox" ? checked : value;
+    console.log(name, valueToUse);
     setFormData({ ...formData, [name]: valueToUse });
+    validate(name, valueToUse);
   };
 
   // clear specifyOther value if dropdown value !== other
@@ -46,7 +62,10 @@ function Form() {
   }, [formData.dropdown]);
 
   useEffect(() => {
-    schema.isValid(formData).then((valid) => setDisabled(!valid));
+    schema.isValid(formData).then((valid) => {
+      console.log(valid);
+      setDisabled(!valid);
+    });
   }, [formData]);
 
   return (
@@ -76,6 +95,7 @@ function Form() {
           placeholder="e.g. John"
           autoComplete="on"
         />
+        <p className="form-error">{errorValues.fName}</p>
         <label htmlFor="lName" className="form-label">
           Last Name<span className="required-field">*</span>
         </label>
@@ -89,6 +109,7 @@ function Form() {
           placeholder="e.g. Doe"
           autoComplete="on"
         />
+        <p className="form-error">{errorValues.lName}</p>
         <label htmlFor="phone" className="form-label">
           Phone Number<span className="required-field">*</span>
         </label>
@@ -102,6 +123,7 @@ function Form() {
           placeholder="e.g. 3456789"
           autoComplete="on"
         />
+        <p className="form-error">{errorValues.phone}</p>
         <label htmlFor="email" className="form-label">
           Email Address<span className="required-field">*</span>
         </label>
@@ -118,6 +140,7 @@ function Form() {
         <p className="form-required-notice">
           (Required in order to receive email confirmation)
         </p>
+        <p className="form-error">{errorValues.email}</p>
         <label htmlFor="promo" className="form-label">
           Promo Code
         </label>
@@ -129,9 +152,12 @@ function Form() {
           value={formData.promo}
           onChange={handleChange}
         />
+        <p className="form-error">{errorValues.promo}</p>
         <label htmlFor="dropdown" className="form-label">
           How did you hear about us?
-          {formData.promo === "" && <span className="required-field">*</span>}
+          {(formData.promo === "" || errorValues.promo !== "") && (
+            <span className="required-field">*</span>
+          )}
         </label>
         <select
           id="dropdown"
@@ -146,6 +172,7 @@ function Form() {
           <option value="email">Email</option>
           <option value="other">Other</option>
         </select>
+        <p className="form-error">{errorValues.dropdown}</p>
         {formData.dropdown === "other" && (
           <div className="optional-input-container">
             <label htmlFor="specifyOther" className="form-label">
@@ -159,6 +186,7 @@ function Form() {
               value={formData.specifyOther}
               onChange={handleChange}
             />
+            <p className="form-error">{errorValues.specifyOther}</p>
           </div>
         )}
         <label htmlFor="agree" className="form-label">
@@ -173,6 +201,7 @@ function Form() {
           I agree to the terms and conditions of this event.
           <span className="required-field">*</span>
         </label>
+        <p className="form-error">{errorValues.agree}</p>
       </div>
     </section>
   );
