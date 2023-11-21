@@ -202,7 +202,11 @@ function Form() {
               value={formData.specifyOther}
               onChange={handleChange}
             />
-            <p className="form-error">{errorValues.specifyOther}</p>
+            {formData.dropdown === "other" && formData.specifyOther === "" && (
+              <p className="form-error">
+                *This field is required when 'Other' is selected
+              </p>
+            )}
           </div>
         )}
         <div className="checkbox-input-container">
@@ -230,21 +234,22 @@ function Form() {
       {showPopup && (
         <div className="form-popup-wrapper" onClick={handleClickOutside}>
           <div className="form-popup-card" ref={popupRef}>
-            <p className="popup-close" onClick={togglePopup}>
-              &times;
-            </p>
-            <div>
-              <p className="popup-text">
-                ○ All cancellation requests must be received by March 1, 2022.
-              </p>
-              <p className="popup-text">
-                ○ All cancellation requests are subject to a $100 cancellation
-                fee.
-              </p>
-              <p className="popup-text">
-                ○ No one under the age of 16 will be allowed on the show floor.
+            <div className="form-close-container">
+              <p className="popup-close" onClick={togglePopup}>
+                &times;
               </p>
             </div>
+            <p className="popup-text">Terms and Conditions:</p>
+            <p className="popup-text">
+              ○ All cancellation requests must be received by March 1, 2022.
+            </p>
+            <p className="popup-text">
+              ○ All cancellation requests are subject to a $100 cancellation
+              fee.
+            </p>
+            <p className="popup-text">
+              ○ No one under the age of 16 will be allowed on the show floor.
+            </p>
           </div>
         </div>
       )}
