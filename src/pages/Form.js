@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as yup from "yup";
 
 import schema from "../validation/formSchema";
@@ -32,6 +32,8 @@ function Form() {
   const [errorValues, setErrorValues] = useState(initialErrorValues);
   const [disabled, setDisabled] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
+
+  const popupRef = useRef(null);
 
   // update error values by checking form values with schema
   const validate = (name, valueToUse) => {
@@ -73,6 +75,13 @@ function Form() {
   // toggle terms and conditions popup
   const togglePopup = () => {
     setShowPopup(!showPopup);
+  };
+
+  // hide terms and conditions popup when clicking outside the box.
+  const handleClickOutside = (evt) => {
+    if (popupRef.current && !popupRef.current.contains(evt.target)) {
+      setShowPopup(false);
+    }
   };
 
   return (
@@ -219,19 +228,24 @@ function Form() {
       </div>
 
       {showPopup && (
-        <div className="form-popup-card">
-          <p className="popup-close" onClick={togglePopup}>
-            &times;
-          </p>
-          <p className="popup-text">
-            ○ All cancellation requests must be received by March 1, 2022.
-          </p>
-          <p className="popup-text">
-            ○ All cancellation requests are subject to a $100 cancellation fee.
-          </p>
-          <p className="popup-text">
-            ○ No one under the age of 16 will be allowed on the show floor.
-          </p>
+        <div className="form-popup-wrapper" onClick={handleClickOutside}>
+          <div className="form-popup-card" ref={popupRef}>
+            <p className="popup-close" onClick={togglePopup}>
+              &times;
+            </p>
+            <div>
+              <p className="popup-text">
+                ○ All cancellation requests must be received by March 1, 2022.
+              </p>
+              <p className="popup-text">
+                ○ All cancellation requests are subject to a $100 cancellation
+                fee.
+              </p>
+              <p className="popup-text">
+                ○ No one under the age of 16 will be allowed on the show floor.
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </section>
