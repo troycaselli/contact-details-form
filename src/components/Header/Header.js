@@ -1,5 +1,4 @@
 import React from "react";
-// import CDSImg from "../../assets/CDS.png";
 import "./header.css";
 
 function Header() {

@@ -1,19 +1,24 @@
+/* Form Layout */
 .form-wrapper {
   display: flex;
   justify-content: center;
   min-height: 73vh;
   width: 100%;
 }
+
 .form-container {
   display: flex;
   flex-direction: column;
   margin: 50px 0;
   width: 60%;
 }
+
+/* Success Bar */
 .form-success-container {
   display: flex;
   justify-content: center;
 }
+
 .form-success-card {
   display: flex;
   justify-content: center;
@@ -26,35 +31,48 @@
   border-radius: 3px;
   background-color: rgb(117, 238, 117);
 }
+
+/* Title and Notice */
 .form-title {
   font-size: 2.5rem;
   padding-top: 50px;
 }
+
 .form-required-notice {
   font-style: italic;
   font-size: 0.8rem;
   padding-top: 5px;
 }
+
+/* Labels */
 .form-label {
   margin: 20px 0 5px 0;
 }
+
 .required-field {
   font-size: 0.8rem;
   color: rgb(217, 18, 18);
   font-weight: bold;
 }
-#fName,
-#lName,
-#phone,
-#dropdown,
-#specifyOther {
-  width: 175px;
+
+/* Input Fields */
+.form-input {
+  border: 1px solid transparent;
+  padding: 7px 0 7px 15px;
+  border-radius: 3px;
 }
+
+.form-input:focus {
+  outline: none;
+  border: 1px solid rgb(112, 160, 229);
+}
+
 #fName,
 #lName {
   font-size: 14px;
   font-weight: bold;
 }
+
 #phone,
 #email,
 #promo,
@@ -62,50 +80,53 @@
 #specifyOther {
   font-size: 12px;
 }
+
 #email {
   font-style: italic;
-  width: 225px;
 }
-#promo {
-  width: 125px;
+
+#promo,
+#dropdown {
+  width: 150px;
 }
+
 #dropdown,
 #agree {
   cursor: pointer;
 }
+
 #agree {
   margin-right: 10px;
   accent-color: rgb(112, 160, 229);
 }
-.form-input {
-  border: 1px solid transparent;
-  padding: 7px 0 7px 15px;
-  border-radius: 3px;
-}
-.form-input:focus {
-  outline: none;
-  border: 1px solid rgb(112, 160, 229);
-}
+
+/* Error Messages */
 .form-error {
   font-size: 0.8rem;
   font-style: italic;
   padding-top: 5px;
   color: rgb(217, 18, 18);
 }
+
+/* Optional Specify Input */
 .optional-input-container {
   display: flex;
   flex-direction: column;
 }
+
+/* Agree Checkbox and Popup */
 .checkbox-input-container {
   display: flex;
   align-items: center;
   margin-top: 20px;
 }
+
 .form-terms-link {
   text-decoration: underline;
   cursor: pointer;
   color: rgb(36, 119, 251);
 }
+
 .form-popup-wrapper {
   position: fixed;
   top: 50%;
@@ -115,6 +136,7 @@
   width: 100vw;
   background-color: rgba(255, 255, 255, 0.5);
 }
+
 .form-popup-card {
   position: fixed;
   top: 50%;
@@ -124,22 +146,26 @@
   border-radius: 3px;
   background-color: rgb(173, 209, 248);
 }
+
 .form-close-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
+
 .popup-close {
   margin-bottom: 10px;
   font-size: 2rem;
   cursor: pointer;
   width: fit-content;
 }
+
 .popup-text:not(:last-child) {
   margin-bottom: 15px;
 }
 
-@media (min-width: 0px) and (max-width: 414px) {
+/* Responsive for Mobile Devices */
+@media (min-width: 0px) and (max-width: 480px) {
   .form-container {
     width: 90%;
   }

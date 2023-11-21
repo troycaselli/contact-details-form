@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   background-color: rgb(240, 240, 240);
-  /* background: linear-gradient(to bottom, rgb(250, 252, 254), #d4e5fb); */
   min-height: 100vh;
   color: rgb(5, 5, 21);
 }
+
 .app-wrapper {
   display: flex;
   flex-direction: column;
