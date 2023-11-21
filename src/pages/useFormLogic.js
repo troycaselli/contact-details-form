@@ -3,6 +3,7 @@ import * as yup from "yup";
 import schema from "../validation/formSchema";
 
 function useFormLogic() {
+  // initialize form data and error values
   const initialFormData = {
     fName: "",
     lName: "",

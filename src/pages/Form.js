@@ -1,5 +1,4 @@
 import React from "react";
-
 import useFormLogic from "./useFormLogic";
 import "./form.css";
 
@@ -29,13 +28,15 @@ function Form() {
         <p className="form-required-notice">
           All fields with an asterisk (*) are required
         </p>
+
+        {/* Input fields for First Name */}
         <label htmlFor="fName" className="form-label">
           First Name<span className="required-field">*</span>
         </label>
         <input
           type="text"
-          id="fName"
           className="form-input"
+          id="fName"
           name="fName"
           value={formData.fName}
           onChange={handleChange}
@@ -43,13 +44,15 @@ function Form() {
           autoComplete="on"
         />
         <p className="form-error">{errorValues.fName}</p>
+
+        {/* Input fields for Last Name */}
         <label htmlFor="lName" className="form-label">
           Last Name<span className="required-field">*</span>
         </label>
         <input
           type="text"
-          id="lName"
           className="form-input"
+          id="lName"
           name="lName"
           value={formData.lName}
           onChange={handleChange}
@@ -57,13 +60,15 @@ function Form() {
           autoComplete="on"
         />
         <p className="form-error">{errorValues.lName}</p>
+
+        {/* Input fields for Phone Number */}
         <label htmlFor="phone" className="form-label">
           Phone Number<span className="required-field">*</span>
         </label>
         <input
           type="text"
-          id="phone"
           className="form-input"
+          id="phone"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
@@ -71,13 +76,15 @@ function Form() {
           autoComplete="on"
         />
         <p className="form-error">{errorValues.phone}</p>
+
+        {/* Input fields for Email Address */}
         <label htmlFor="email" className="form-label">
           Email Address<span className="required-field">*</span>
         </label>
         <input
           type="email"
-          id="email"
           className="form-input"
+          id="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
@@ -88,18 +95,22 @@ function Form() {
           (Required in order to receive email confirmation)
         </p>
         <p className="form-error">{errorValues.email}</p>
+
+        {/* Input field for Promo Code */}
         <label htmlFor="promo" className="form-label">
           Promo Code
         </label>
         <input
           type="text"
-          id="promo"
           className="form-input"
+          id="promo"
           name="promo"
           value={formData.promo}
           onChange={handleChange}
         />
         <p className="form-error">{errorValues.promo}</p>
+
+        {/* Dropdown for How did you hear about us */}
         <label htmlFor="dropdown" className="form-label">
           How did you hear about us?
           {(formData.promo === "" || errorValues.promo !== "") && (
@@ -107,8 +118,8 @@ function Form() {
           )}
         </label>
         <select
-          id="dropdown"
           className="form-input"
+          id="dropdown"
           name="dropdown"
           value={formData.dropdown}
           onChange={handleChange}
@@ -120,6 +131,8 @@ function Form() {
           <option value="other">Other</option>
         </select>
         <p className="form-error">{errorValues.dropdown}</p>
+
+        {/* SpecifyOther input when dropdown value is 'other' */}
         {formData.dropdown === "other" && (
           <div className="optional-input-container">
             <label htmlFor="specifyOther" className="form-label">
@@ -127,8 +140,8 @@ function Form() {
             </label>
             <input
               type="text"
-              id="specifyOther"
               className="form-input"
+              id="specifyOther"
               name="specifyOther"
               value={formData.specifyOther}
               onChange={handleChange}
@@ -141,12 +154,14 @@ function Form() {
             <p className="form-error">{errorValues.specifyOther}</p>
           </div>
         )}
+
+        {/* Checkbox for agreement */}
         <div className="checkbox-input-container">
           <label htmlFor="agree" className="form-label"></label>
           <input
             type="checkbox"
-            id="agree"
             className="form-input"
+            id="agree"
             name="agree"
             checked={formData.agree}
             onChange={handleChange}
@@ -163,6 +178,7 @@ function Form() {
         <p className="form-error">{errorValues.agree}</p>
       </div>
 
+      {/* Popup for terms and conditions */}
       {showPopup && (
         <div className="form-popup-wrapper" onClick={handleClickOutside}>
           <div className="form-popup-card" ref={popupRef}>
