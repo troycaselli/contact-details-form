@@ -27,8 +27,7 @@ const formSchema = yup.object().shape({
     .string()
     .trim()
     .matches(/^[a-zA-Z0-9]*$/, "*Promo code only accepts alphanumeric values")
-    .max(7, "*Promo code must be no more than 7 characters")
-    .nullable(),
+    .max(7, "*Promo code must be no more than 7 characters"),
   dropdown: yup.string().when("promo", {
     is: (val) => val === "" || val === null || val === undefined,
     then: () =>
@@ -46,8 +45,10 @@ const formSchema = yup.object().shape({
       yup
         .string()
         .trim()
+        .max(255, "*This field must be no more than 255 characters")
         .required("*This field is required when 'Other' is selected"),
-    otherwise: () => yup.string(),
+    otherwise: () =>
+      yup.string().max(255, "*This field must be no more than 255 characters"),
   }),
   agree: yup.boolean().oneOf([true], "*You must agree to our terms"),
 });

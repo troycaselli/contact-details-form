@@ -1,88 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import * as yup from "yup";
+import React from "react";
 
-import schema from "../validation/formSchema";
+import useFormLogic from "./useFormLogic";
 import "./form.css";
 
-const initialFormData = {
-  fName: "",
-  lName: "",
-  phone: "",
-  email: "",
-  promo: "",
-  dropdown: "",
-  specifyOther: "",
-  agree: false,
-};
-
-const initialErrorValues = {
-  fName: "",
-  lName: "",
-  phone: "",
-  email: "",
-  promo: "",
-  dropdown: "",
-  specifyOther: "",
-  agree: "",
-};
-
 function Form() {
-  // initialize state
-  const [formData, setFormData] = useState(initialFormData);
-  const [errorValues, setErrorValues] = useState(initialErrorValues);
-  const [disabled, setDisabled] = useState(true);
-  const [showPopup, setShowPopup] = useState(false);
-
-  const popupRef = useRef(null);
-
-  // update error values by checking form values with schema
-  const validate = (name, valueToUse) => {
-    yup
-      .reach(schema, name)
-      .validate(valueToUse)
-      .then(() => {
-        setErrorValues({ ...errorValues, [name]: "" });
-      })
-      .catch((err) =>
-        setErrorValues({ ...errorValues, [name]: err.errors[0] })
-      );
-  };
-
-  // update form data state
-  const handleChange = (evt) => {
-    const { type, name, value, checked } = evt.target;
-    const valueToUse = type === "checkbox" ? checked : value;
-    console.log(name, valueToUse);
-    setFormData({ ...formData, [name]: valueToUse });
-    validate(name, valueToUse);
-  };
-
-  // clear specifyOther value if dropdown value !== other
-  useEffect(() => {
-    if (formData.dropdown !== "other") {
-      setFormData((prevFormData) => ({ ...prevFormData, specifyOther: "" }));
-    }
-  }, [formData.dropdown]);
-
-  // check form data with yup schema
-  useEffect(() => {
-    schema.isValid(formData).then((valid) => {
-      console.log(valid);
-      setDisabled(!valid);
-    });
-  }, [formData]);
-
-  // toggle terms and conditions popup
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
-  };
-
-  // hide terms and conditions popup when clicking outside the box.
-  const handleClickOutside = (evt) => {
-    if (popupRef.current && !popupRef.current.contains(evt.target)) {
-      setShowPopup(false);
-    }
-  };
+  const {
+    formData,
+    errorValues,
+    disabled,
+    showPopup,
+    popupRef,
+    handleChange,
+    togglePopup,
+    handleClickOutside,
+  } = useFormLogic();
 
   return (
     <section className="form-wrapper">
@@ -207,6 +138,7 @@ function Form() {
                 *This field is required when 'Other' is selected
               </p>
             )}
+            <p className="form-error">{errorValues.specifyOther}</p>
           </div>
         )}
         <div className="checkbox-input-container">
